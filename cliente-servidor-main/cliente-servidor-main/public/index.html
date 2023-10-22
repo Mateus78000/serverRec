@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="main.css">
+  <title>Cadastro de filmes</title>
+</head>
+
+<body>
+  <dialog>
+    <header>
+      <h1>Logue-se</h1>
+    </header>
+    <main>
+      <form action="dialog">
+        <input placeholder="login" name="login">
+        <input placeholder="senha" name="senha">
+      </form>
+    </main>
+    <footer>
+      <div class="msg"></div>
+      <button class="bt-send">logar</button>
+      <button class="bt-cancel">Cancelar</button>
+    </footer>
+  </dialog>
+<!---------------------------------------------->
+
+  <div class="container">
+    <h2>Cadastre seus filmes</h2>
+  <form class="form-alterar">
+    <div>
+      <label for="title">Title</label>
+      <input name="title" id="title" type="text" required placeholder="Digite o título do filme">
+    </div>
+    <div>
+      <label for="source">Source</label>
+      <input name="source" id="source" type="text" required placeholder="Digite a origem do filme">
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <input name="description" id="description" type="text" required placeholder="Digite uma breve descrição do filme">
+    </div>
+    <div>
+      <label for="thumb">Thumb</label>
+      <input name="thumb" id="thumb" type="text" required placeholder="Insira a URL da imagem do filme">
+    </div>
+    <div>
+      <button>Cadastrar</button>
+    </div>
+  </form>
+  <ul class="movie-list">
+    <!--  -->
+  </ul>
+</div>
+
+</body>
+<script src="main.js"></script>
+</html>

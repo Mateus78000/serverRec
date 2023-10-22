@@ -1,0 +1,9 @@
+PUT http://127.0.0.1:3000/movies?id=1 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "Castelo Animado",
+  "source": "http://alksdfjlsadfjlskad.com/akudhaskduas.mp4",
+  "description": "Um filme que um bixinho de fogo muito sim[pát]icpo",
+  "thumb": "http://alksdfjlsadfjlskad.com/akudhaskduas.jpg"
+}

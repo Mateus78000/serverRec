@@ -1,0 +1,9 @@
+POST http://127.0.0.1:3000/movies HTTP/1.1
+content-type: application/json
+
+{
+  "title": "Miranha no Multi Versu da Locura",
+  "source": "http://alksdfjlsadfjlskad.com/akudhaskduas.mp4",
+  "description": "Miranha fazendu altas locuras no multiverso da locura",
+  "thumb": "http://alksdfjlsadfjlskad.com/akudhaskduas.jpg"
+}

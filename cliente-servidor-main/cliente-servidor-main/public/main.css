@@ -1,0 +1,105 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f3f3;
+  }
+
+.container {
+    max-width: 400px;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: "Arial", sans-serif; 
+    font-weight: bold; 
+    color: #000000;
+  }
+  
+  form.form-alterar {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form.form-alterar > div {
+    margin-bottom: 1rem;
+  }
+  
+  form.form-alterar label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #292727;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold; 
+
+  }
+  
+  form.form-alterar input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    width: 220px;
+  }
+  
+  form.form-alterar button {
+    padding: 0.75rem 1rem;
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: Arial, sans-serif;
+  }
+  
+  form.form-alterar button:hover {
+    background-color: #07b0ff;
+  }
+  
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  ul.movie-list > li {
+    border: 2px solid #000000;
+    margin: 1rem;
+    cursor: pointer;
+  }
+  
+  ul.movie-list > li > div {
+    background-color: #000000;
+    padding: .25rem .5rem;
+    color: #FFFFFF;
+  }
+
+  ul.movie-list > li > ul {
+    padding: .5rem;
+    transition: .3s;
+  }
+
+  ul.movie-list > li > ul:hover {
+    background-color: #00000033;
+  }
+
+  ul.movie-list > li > ul li button.alterar-button,
+  ul.movie-list > li > ul li button.delete-button {
+    background-color: #000000;
+    border: 5px solid #000000;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+  }
