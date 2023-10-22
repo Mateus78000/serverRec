@@ -3,15 +3,18 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f3f3f3;
+    background-image: url(https://patch.com/img/cdn/users/39037/2011/08/raw/7acb89d6afc50217a01f8f178b2db686.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;     
   }
 
 .container {
     max-width: 400px;
     padding: 1rem;
-    background-color: #ffffff;
-    border-radius: 8px;
+    background-color: #5ca008;
+    border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 5px solid rgb(10, 54, 6);
   }
   
   h2 {
@@ -19,7 +22,7 @@ body {
     margin-bottom: 1rem;
     font-family: "Arial", sans-serif; 
     font-weight: bold; 
-    color: #000000;
+    color: white;
   }
   
   form.form-alterar {
@@ -59,7 +62,7 @@ body {
   }
   
   form.form-alterar button:hover {
-    background-color: #07b0ff;
+    background-color: #68a855;
   }
   
 ul, li {
