@@ -24,7 +24,7 @@ function login(req, res, next) {
 app.get("/login", (req, res) => {
   const { login, senha } = req.query
   if (login == "daniel" && senha == "123123") {
-    // se o login estiver correto, cria uma string criptografada e envia para a lista "loginTokens" como cookies
+    // se o login estiver correto, cria uma string criptografada e retorna como resposta em forma de json
     const hash = crypto.randomBytes(20).toString('hex')
     loginTokens.push(hash)
     console.log(hash)
@@ -34,6 +34,7 @@ app.get("/login", (req, res) => {
   res.status(400).json({ error: true, msg: "Usuário e senha inválidos" })
 })
 
+// insere as informações adquiridas pelo forms dentro do banco de dados
 app.post("/movies", async (req, res) => {
   const { title, source, description, thumb } = req.body
   const db = await getDatabaseInstance()
@@ -41,14 +42,19 @@ app.post("/movies", async (req, res) => {
   res.json(result)
 })
 
+
+
 app.get("/movies", async (req, res) => {
   const { id } = req.query
   const db = await getDatabaseInstance()
+  // caso um id seja entregue, pega os dados apenas do filme com esse id
   if (id) {
     const result = await db.get(`SELECT * FROM movies WHERE id=?`, id)
     res.json(result)
     return
   }
+
+//retorna todos os filme, se houverem filmes
   const result = await db.all(`SELECT * FROM movies`)
   res.json(result)
 })

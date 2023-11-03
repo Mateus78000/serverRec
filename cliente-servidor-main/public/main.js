@@ -18,11 +18,14 @@ if (!localStorage.getItem("token")) {
   listarTodosOsFilmes()
 }
 
+// função que dá funcionalidade ao botão do diálogo,  adiciona o evento de click 
 loginFormButtonSend.addEventListener("click", async ev => {
-  //pega os valores dados pelo usuario e os transforma em variáveis
+  //pega os valores dados pelo usuario e os transforma nas variaveis
   const { login, senha } = loginForm
+  // acessa a  rota login, fornece os dados, checa se estão corretos, cria um token e o retorna
   const response = await fetch(`/login?login=${login.value}&senha=${senha.value}`)
 
+  // guarda seus cookies no server
   const data = await response.json()
   console.log(data)
   if (data.token) {
@@ -32,14 +35,17 @@ loginFormButtonSend.addEventListener("click", async ev => {
     listarTodosOsFilmes()
     return
   }
-  loginMsg.innerHTML = `<strong>Usuário e/ou senha inválidos</strong>`
+  loginMsg.innerHTML = `<strong>Usuár/io e/ou senha inválidos</strong>`
 })
 
 // ---✀------------------------------------------------------------------
 async function listarTodosOsFilmes() {
+  // pega a lista de filmes
   const response = await fetch("/movies")
   const movies = await response.json()
+  // depois de transformar a lista de filmes em json, deleta o conteudo atual da lista de itens
   domMovieList.innerHTML = ""
+  // dentro dessa mesma lista, cria um item pra cada filme
   movies.forEach(movie => {
     domMovieList.innerHTML += `  
       <li>
@@ -64,6 +70,7 @@ async function listarTodosOsFilmes() {
       </li>
     `
   });
+  // pega o id do filme no json e o guarda nos botões, pra serem utilizados na hora de editar ou excluir
 }
 
 listarTodosOsFilmes()
@@ -74,6 +81,7 @@ domFormAlterar.addEventListener("submit", async ev => {
   ev.stopPropagation()
   ev.stopImmediatePropagation()
   
+  // pega as informaões do forms
   const body = JSON.stringify({
     title: domFormAlterar.title.value,
     source: domFormAlterar.source.value,
@@ -81,20 +89,21 @@ domFormAlterar.addEventListener("submit", async ev => {
     thumb: domFormAlterar.thumb.value,
   })
 
-  if (sendButton.dataset.id) {
-    console.log("botao alterar")
-    const response = await fetch(`/movies?id=${sendButton.dataset.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body
-    })
-    sendButton.removeAttribute("data-id")
-    sendButton.innerText = "Cadastrar"
-    domFormAlterar.reset()
-    listarTodosOsFilmes()
-    return
-  }
+  // if (sendButton.dataset.id) {
+  //   console.log("botao alterar")
+  //   const response = await fetch(`/movies?id=${sendButton.dataset.id}`, {
+  //     method: "PUT",
+  //     headers: { "Content-Type": "application/json" },
+  //     body
+  //   })
+  //   sendButton.removeAttribute("data-id")
+  //   sendButton.innerText = "Cadastrar"
+  //   domFormAlterar.reset()
+  //   listarTodosOsFilmes()
+  //   return
+  // }
   
+  // manda as informaçoes pra rota movies com o método post, 
   const response = await fetch("/movies", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
