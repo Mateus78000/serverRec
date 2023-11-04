@@ -82,6 +82,7 @@ domFormAlterar.addEventListener("submit", async ev => {
   ev.stopImmediatePropagation()
   
   // pega as informaões do forms
+  // cria um json com todas as informações
   const body = JSON.stringify({
     title: domFormAlterar.title.value,
     source: domFormAlterar.source.value,
@@ -89,19 +90,22 @@ domFormAlterar.addEventListener("submit", async ev => {
     thumb: domFormAlterar.thumb.value,
   })
 
-  // if (sendButton.dataset.id) {
-  //   console.log("botao alterar")
-  //   const response = await fetch(`/movies?id=${sendButton.dataset.id}`, {
-  //     method: "PUT",
-  //     headers: { "Content-Type": "application/json" },
-  //     body
-  //   })
-  //   sendButton.removeAttribute("data-id")
-  //   sendButton.innerText = "Cadastrar"
-  //   domFormAlterar.reset()
-  //   listarTodosOsFilmes()
-  //   return
-  // }
+  // verifica se o botão cadastrar tem o id do filme que vai ser alterado
+  // se tiver, usa o método put para alterar as informações do banco de dados
+  // do filme com o mesmo id do id do botão alterar (que ganhou o id do filme desejado)
+  if (sendButton.dataset.id) {
+    console.log("botao alterar")
+    const response = await fetch(`/movies?id=${sendButton.dataset.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body
+    })
+    sendButton.removeAttribute("data-id")
+    sendButton.innerText = "Cadastrar"
+    domFormAlterar.reset()
+    listarTodosOsFilmes()
+    return
+  }
   
   // manda as informaçoes pra rota movies com o método post, 
   const response = await fetch("/movies", {
@@ -110,6 +114,7 @@ domFormAlterar.addEventListener("submit", async ev => {
     body
   })
   
+  // reseta os imputs e lista todos os filmes
   const result = await response.json()
   domFormAlterar.reset()
   
@@ -118,14 +123,19 @@ domFormAlterar.addEventListener("submit", async ev => {
 
 // ---✀------------------------------------------------------------------
 
+
 domMovieList.addEventListener("click", async ev => {
+  // se o botão clicado tiver a classe "delete"
+  // pega o id do item escolhido e o deleta no banco de dados
   if (ev.target.classList.contains("delete-button")) {
     const response = await fetch(`/movies?id=${ev.target.dataset.id}`, { method: "DELETE"})
-   // const movies = await response.json()        
+    // const movies = await response.json()        
     listarTodosOsFilmes()
     return
   } 
   
+
+  // pega os dados do filme escplhido usando o id do botão
   if (ev.target.classList.contains("alterar-button")) {
     console.log(ev.target.dataset.id)
     const idResponse = await fetch(`/movies?id=${ev.target.dataset.id}`, {method: "GET"})
@@ -134,11 +144,13 @@ domMovieList.addEventListener("click", async ev => {
     // console.log(await response.json())
     console.log(domFormAlterar.title.value)
     
+    // depois coloca nos imputs os valores salvos no banco de dados
     domFormAlterar.title.value = movieData.title
     domFormAlterar.source.value = movieData.source
     domFormAlterar.description.value = movieData.description
     domFormAlterar.thumb.value = movieData.thumb
 
+    // adiciona o atributo id para o botao cadastrar e muda o seu texto
     console.log(sendButton)
     sendButton.innerText = "Alterar"
     sendButton.dataset.id = movieData.id
